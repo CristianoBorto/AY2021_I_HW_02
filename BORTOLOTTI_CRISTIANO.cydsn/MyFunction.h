@@ -10,21 +10,14 @@
  * ========================================
 */
 
-#include "MyISR.h"
-#include "MyFunction.h"
+#include "project.h"
 
+void Start_Blinking(void);
 
-CY_ISR(custom_ISR_Deb)
-{
-    state++;
-    Confirm_Blink();
-    
-    if(state==8)
-    {
-        state=1;
-        
-    }
-    
-}
+void Confirm_Blink(void);
+
+void Set_Compare_Mode(uint8 value1, uint8 value2);
+
+void Set_Period(uint8 value1, uint8 value2);
 
 /* [] END OF FILE */

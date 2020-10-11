@@ -11,7 +11,7 @@
 */
 #include "project.h"
 #include "MyISR.h"
-//#include "MyFunction.h"
+#include "MyFunction.h"
 
 // definition of all kinds od states
 #define step1 1
@@ -22,18 +22,6 @@
 #define step6 6
 #define step7 7
 
-// definition of modalities
-#define Less 1
-#define Less_Equal 2
-#define Greater 3
-#define Greater_Equal 4
-
-// definition of time as fraction of period T=254 bit; with f=127 Hz we have a period of 2s
-#define Full 254
-#define Half 127
-#define Quarter 64
-#define One_Eighth 32
-#define Always_On 0
 
 int main(void)
 {
@@ -41,84 +29,88 @@ int main(void)
     ISR_Deb_StartEx(custom_ISR_Deb); //addressing the interrupt to my custom ISR and start
     Start_Blinking(); //starting of all PWMs and Clocks
     
-    state=1; //initialization of the flag
+    state=0; //initialization of the flag
     while(1)
     {
      if(state==step1){
-            //set modality
-            Set_Compare_Mode(Less, Less); //setting of the PWMs compare modes, the first value is for red channel
-            // set period
-            Set_Period(Full, Full); //setting of the PWMs periods, the first value is for red channel
-            //set compare
-            Set_Compare(Always_On, Always_On); //setting of the PWMs compare values, the first value is for red channel
-            //reset counter
-            Reset_Counter(); //reset of the PWMs counters
-            while(state==step1); //wait until click
+            Set_Compare_Mode(1, 1);
+            Set_Period(254, 254);
+            PWM_Green_WriteCompare(0);
+            PWM_Red_WriteCompare(0);
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
+            while(state==step1);
         }
     
         if(state==step2){
-            //set compare
-            Set_Compare(Always_On, Half);
-            //reset counter
-            Reset_Counter();
-            while(state==step2); //wait until click
+            PWM_Green_WriteCompare(127);
+            PWM_Red_WriteCompare(0);
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
+            while(state==step2);
         }
         if(state==step3){
-            //set modality
-            Set_Compare_Mode(Greater, Less);
-            //set compare
-            Set_Compare(Half, Always_On);
-            //reset counter
-            Reset_Counter();
+            Set_Compare_Mode(3, 1);
+            PWM_Green_WriteCompare(0);
+            PWM_Red_WriteCompare(127);
+            PWM_Red_WriteCounter(0);
+            PWM_Red_WriteCounter(0);
             while(state==step3); //wait until click
         }
         if(state==step4){
             //set modality
-            Set_Compare_Mode(Less, Greater);
+            Set_Compare_Mode(1, 3);
             // set period
-            Set_Period(Half, Half);
+            Set_Period(127, 127);
             //set compare
-            Set_Compare(Quarter, Quarter);
-            //reset counter
-            Reset_Counter();
+            PWM_Green_WriteCompare(64);
+            PWM_Red_WriteCompare(64);
+            //set counter
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
             while(state==step4); //wait until click
         }
         if(state==step5){
             //set modality
-            Set_Compare_Mode(Greater, Less);
+            Set_Compare_Mode(3, 1);
             // set period
-            Set_Period(Quarter, Quarter);
+            Set_Period(64, 64);
             //set compare
-            Set_Compare(One_Eighth,One_Eighth);
-            //reset counter
-            Reset_Counter();
+            PWM_Green_WriteCompare(32);
+            PWM_Red_WriteCompare(32);
+            //set counter
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
             while(state==step5); //wait until click
         }
         if(state==step6){
             //set modality
-            Set_Compare_Mode(Less, Less);
+            Set_Compare_Mode(1, 1);
             // set period
-            Set_Period(Full, Full);
+            Set_Period(254, 254);
             //set compare
-            Set_Compare(Quarter,Half);
-            //reset counter
-            Reset_Counter();
+            PWM_Green_WriteCompare(127);
+            PWM_Red_WriteCompare(64);
+            //set counter
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
             while(state==step6); //wait until click
         }
         if(state==step7){
             //set modality
-            Set_Compare_Mode(Greater, Less);
+            Set_Compare_Mode(3, 1);
             // set period
-            Set_Period(Half, Full);
+            Set_Period(127, 254);
             //set compare
-            Set_Compare(Half, Quarter);
-            //reset counter
-            Reset_Counter();
+            PWM_Green_WriteCompare(64);
+            PWM_Red_WriteCompare(127);
+            //set counter
+            PWM_Red_WriteCounter(0);
+            PWM_Green_WriteCounter(0);
             while(state==step7); //wait until click
         }
 
     }
 }
-
 
 /* [] END OF FILE */
