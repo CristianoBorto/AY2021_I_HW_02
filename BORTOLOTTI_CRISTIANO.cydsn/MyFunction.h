@@ -20,4 +20,8 @@ void Set_Compare_Mode(uint8 value1, uint8 value2);
 
 void Set_Period(uint8 value1, uint8 value2);
 
+void Set_Compare(uint8 value1, uint8 value2); //setting of the PWMs compare values, the first value is for red channel
+
+void Reset_Counter(void); //reset of the PWMs counters
+
 /* [] END OF FILE */

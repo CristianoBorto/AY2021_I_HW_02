@@ -42,4 +42,17 @@ void Set_Period(uint8 value1, uint8 value2)
         PWM_Green_WritePeriod(value2);     
 }
 
+void Set_Compare(uint8 value1, uint8 value2) //setting of the PWMs compare values, the first value is for red channel
+{
+    PWM_Red_WriteCompare(value1); 
+    PWM_Green_WriteCompare(value2);
+
+}
+
+void Reset_Counter(void) //reset of the PWMs counters
+{
+    PWM_Red_WriteCounter(0);
+    PWM_Green_WriteCounter(0);    
+}
+
 /* [] END OF FILE */
