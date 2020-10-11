@@ -33,9 +33,8 @@ int main(void)
     while(1)
     {
      if(state==step1){
-            Set_Compare_Mode(0, 1, 1);
-            PWM_Green_WritePeriod(255);
-            PWM_Red_WritePeriod(255);
+            Set_Compare_Mode(1, 1);
+            Set_Period(254, 254);
             PWM_Green_WriteCompare(0);
             PWM_Red_WriteCompare(0);
             PWM_Red_WriteCounter(0);
@@ -51,7 +50,7 @@ int main(void)
             while(state==step2);
         }
         if(state==step3){
-            Set_Compare_Mode(1, 3, 0);
+            Set_Compare_Mode(3, 1);
             PWM_Green_WriteCompare(0);
             PWM_Red_WriteCompare(127);
             PWM_Red_WriteCounter(0);
@@ -60,10 +59,9 @@ int main(void)
         }
         if(state==step4){
             //set modality
-            Set_Compare_Mode(0, 1, 3);
+            Set_Compare_Mode(1, 3);
             // set period
-            PWM_Green_WritePeriod(128);
-            PWM_Red_WritePeriod(128);
+            Set_Period(127, 127);
             //set compare
             PWM_Green_WriteCompare(64);
             PWM_Red_WriteCompare(64);
@@ -74,10 +72,9 @@ int main(void)
         }
         if(state==step5){
             //set modality
-            Set_Compare_Mode(0, 3, 1);
+            Set_Compare_Mode(3, 1);
             // set period
-            PWM_Green_WritePeriod(64);
-            PWM_Red_WritePeriod(64);
+            Set_Period(64, 64);
             //set compare
             PWM_Green_WriteCompare(32);
             PWM_Red_WriteCompare(32);
@@ -88,10 +85,9 @@ int main(void)
         }
         if(state==step6){
             //set modality
-            Set_Compare_Mode(1, 1, 0);
+            Set_Compare_Mode(1, 1);
             // set period
-            PWM_Green_WritePeriod(255);
-            PWM_Red_WritePeriod(255);
+            Set_Period(254, 254);
             //set compare
             PWM_Green_WriteCompare(127);
             PWM_Red_WriteCompare(64);
@@ -102,10 +98,9 @@ int main(void)
         }
         if(state==step7){
             //set modality
-            Set_Compare_Mode(1, 3, 0);
+            Set_Compare_Mode(3, 1);
             // set period
-            PWM_Green_WritePeriod(127);
-            PWM_Red_WritePeriod(255);
+            Set_Period(127, 254);
             //set compare
             PWM_Green_WriteCompare(64);
             PWM_Red_WriteCompare(127);
