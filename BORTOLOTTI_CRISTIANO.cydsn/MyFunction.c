@@ -13,7 +13,7 @@
 #include "project.h"
 #include "MyFunction.h"
 
-void Start_Blinking(void)
+void Start_Blinking(void) //starting of all PWMs and Clocks
 {
    PWM_Green_Start();
    PWM_Red_Start();
@@ -30,5 +30,16 @@ void Confirm_Blink(void) //blinking used to confirm the switch from one state to
     LED_Write(0);   
 }
 
+void Set_Compare_Mode(uint8 value1, uint8 value2)
+{
+        PWM_Red_SetCompareMode(value1);
+        PWM_Green_SetCompareMode(value2);   
+}
+
+void Set_Period(uint8 value1, uint8 value2)
+{
+        PWM_Red_WritePeriod(value1);
+        PWM_Green_WritePeriod(value2);     
+}
 
 /* [] END OF FILE */
