@@ -16,4 +16,6 @@ void Start_Blinking(void);
 
 void Confirm_Blink(void);
 
+void Set_Compare_Mode(uint8 a, uint8 value1, uint8 value2);
+
 /* [] END OF FILE */
