@@ -11,14 +11,13 @@
 */
 
 #include "MyISR.h"
+#include "MyFunction.h"
 
 
 CY_ISR(custom_ISR_Deb)
 {
     state++;
-    LED_Write(1);
-    CyDelay(100);
-    LED_Write(0);
+    Confirm_Blink();
     
     if(state==8)
     {

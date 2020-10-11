@@ -14,5 +14,6 @@
 
 void Start_Blinking(void);
 
+void Confirm_Blink(void);
 
 /* [] END OF FILE */
