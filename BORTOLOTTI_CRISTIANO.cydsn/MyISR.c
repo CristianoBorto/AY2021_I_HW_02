@@ -16,9 +16,11 @@
 
 CY_ISR(custom_ISR_Deb)
 {
-    state++;
-    Confirm_Blink();
+    state++;//Updating of flag in order to pass through states
+
+    Confirm_Blink();//blinking used to confirm that the switch occured
     
+    // required condition in order to return to the first case
     if(state==8)
     {
         state=1;

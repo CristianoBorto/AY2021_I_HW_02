@@ -30,13 +30,13 @@ void Confirm_Blink(void) //blinking used to confirm the switch from one state to
     LED_Write(0);   
 }
 
-void Set_Compare_Mode(uint8 value1, uint8 value2)
+void Set_Compare_Mode(uint8 value1, uint8 value2) //setting of the PWMs compare modes, the first value is  for red channel
 {
         PWM_Red_SetCompareMode(value1);
         PWM_Green_SetCompareMode(value2);   
 }
 
-void Set_Period(uint8 value1, uint8 value2)
+void Set_Period(uint8 value1, uint8 value2) //setting of the PWMs periods, the first value is for red channel
 {
         PWM_Red_WritePeriod(value1);
         PWM_Green_WritePeriod(value2);     

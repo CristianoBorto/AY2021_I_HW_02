@@ -110,7 +110,7 @@ int main(void)
             //set modality
             Set_Compare_Mode(Greater, Less);
             // set period
-            Set_Period(Half, Full);
+            Set_Period(Full, Half);
             //set compare
             Set_Compare(Half, Quarter);
             //reset counter
