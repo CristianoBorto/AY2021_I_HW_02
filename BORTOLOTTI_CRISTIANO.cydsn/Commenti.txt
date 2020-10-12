@@ -4,6 +4,10 @@ utilizzato nel main e nell'ISR. Ho utilizzato l'Interrupt, triggerata dalla pres
 La più grossa difficoltà è stato la gestione dei LED: essendo il nostro LED RGB ad anodo comune, affinchè passi la corrente e si
 accenda il LED è necessario che il pin sia basso; infatti, quando il pin è alto, il LED si comporta come un circuito aperto e non
 passa corrente. Perciò, ho dovuto ragionare al contrario e considerare acceso il led quando il pin è basso. 
+Su questo ragionamento si è basata la scelta della giusta forma dell'onda quadra: per ottenere,ad esempio, un'onda quadra prima alta e
+poi bassa, è stato necessario ragionare al contrario e settare la compare mode come "Less" (la modalità "Less_Equal" generava un
+piccolo blink quando appunto assumeva un valore uguale al compare) e settare il compare e il periodo in modo tale che il pin inizial-
+mente fosse basso (quindi garantendo il passaggio di corrente) per alzarsi a una certa percentuale del periodo.
 Nel main, dopo l'inizializzazione di tutti i clocks, dei PWMs e dell'interrupt, si entra nel while(1) e vi è la scansione dei vari
 step in base alla pressione del bottone. L'algoritmo in generale è questo:
 1) settaggio della modalità di comparazione del PWM
@@ -20,3 +24,4 @@ I 7 pattern visualizzati sono:
 5) Verde 0.25s, Rosso 0.25s
 6) Giallo 1s, Rosso 0.5s, Spento 0.5s
 7) Verde 0.5s, Spento 0.5s, Giallo 0.5s, Rosso 0.5s
+
