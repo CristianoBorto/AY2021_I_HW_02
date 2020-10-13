@@ -39,11 +39,13 @@
 
 int main(void)
 {
+    //initialization phase
     CyGlobalIntEnable; /* Enable global interrupts. */
     ISR_Deb_StartEx(custom_ISR_Deb); //addressing the interrupt to my custom ISR and start
-    Start_Blinking(); //starting of all PWMs and Clocks
+    Confirm_Blink(); //check that the device is working and that the on-board is working
+    Start_Peripherals(); //starting of all PWMs and Clocks
     
-    state=0; //initialization of the flag
+    state=step1; //initialization of the flag
     while(1)
     {
      if(state==step1){
@@ -59,6 +61,12 @@ int main(void)
         }
     
         if(state==step2){
+            /* I put this part anyway in order to make easier code modification in case of pattern modification
+            //set modality
+            Set_Compare_Mode(Less, Less); //setting of the PWMs compare modes, the first value is for red channel
+            // set period
+            Set_Period(Full, Full); //setting of the PWMs periods, the first value is for red channel
+            */
             //set compare
             Set_Compare(Always_On, Half);
             //reset counter
@@ -68,6 +76,10 @@ int main(void)
         if(state==step3){
             //set modality
             Set_Compare_Mode(Greater, Less);
+            /*
+            // set period
+            Set_Period(Full, Full); //setting of the PWMs periods, the first value is for red channel
+            */
             //set compare
             Set_Compare(Half, Always_On);
             //reset counter

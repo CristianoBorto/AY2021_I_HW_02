@@ -1,6 +1,11 @@
 /* ========================================
  Commenti sul codice
-Ho introdotto due file "MyFunction.h" e "MyFunction.c" in cui ho, rispettivamente, dichiarato e implementato le funzioni che poi 
+Il codice è composto da un main source in cui, dopo una parte iniziale in cui vengono definite le varie variabili che poi verrano
+utilizzate all'interno del codice in modo tale da avere una facile modifica dei valori in caso si vogliano cambiare i parametri,
+è presente l'algoritmo implementato per realizzare i vari pattern. E' stata poi realizzata una interrupt ("MyISR.h" e "MyISR.c")
+in cui viene dichiarata la variabile globale, fondamentale per la corretta implementazione dell'algoritmo, e viene incrementata
+per passare a uno stato all'altro alla pressione del bottone.
+Ho introdotto anche due file "MyFunction.h" e "MyFunction.c" in cui ho, rispettivamente, dichiarato e implementato le funzioni che poi 
 ho utilizzato nel main e nell'ISR. Ho utilizzato l'Interrupt, triggerata dalla pressione del bottone on-board filtrato dal 
 debouncer. La più grossa difficoltà è stato la gestione dei LED: essendo il nostro LED RGB ad anodo comune, affinchè passi la 
 corrente e si accenda il LED è necessario che il pin sia basso; infatti, quando il pin è alto, il LED si comporta come un 
@@ -28,3 +33,4 @@ I 7 pattern visualizzati sono:
 */
 
 /* [] END OF FILE */
+
