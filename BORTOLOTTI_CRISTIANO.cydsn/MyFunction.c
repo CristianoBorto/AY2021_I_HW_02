@@ -13,7 +13,7 @@
 #include "project.h"
 #include "MyFunction.h"
 
-void Start_Blinking(void) //starting of all PWMs and Clocks
+void Start_Peripherals(void) //starting of all PWMs and Clocks
 {
    PWM_Green_Start();
    PWM_Red_Start();

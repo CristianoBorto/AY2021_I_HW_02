@@ -12,7 +12,7 @@
 
 #include "project.h"
 
-void Start_Blinking(void); //starting of all PWMs and Clocks
+void Start_Peripherals(void); //starting of all PWMs and Clocks
 
 void Confirm_Blink(void); //blinking used to confirm the switch from one state to another
 
