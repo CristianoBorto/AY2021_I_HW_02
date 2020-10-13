@@ -1,10 +1,16 @@
 /* ========================================
  Commenti sul codice
-Ho introdotto due file "MyFunction.h" e "MyFunction.c" in cui ho, rispettivamente, dichiarato e implementato le funzioni che poi 
-ho utilizzato nel main e nell'ISR. Ho utilizzato l'Interrupt, triggerata dalla pressione del bottone on-board filtrato dal 
-debouncer. La più grossa difficoltà è stato la gestione dei LED: essendo il nostro LED RGB ad anodo comune, affinchè passi la 
-corrente e si accenda il LED è necessario che il pin sia basso; infatti, quando il pin è alto, il LED si comporta come un 
-circuito aperto e non passa corrente. Perciò, ho dovuto ragionare al contrario e considerare acceso il led quando il pin è basso. 
+Il codice è composto da un main source in cui ho definto inizialmente tutte le costanti utilizzate, ho inizializzato le varie 
+periferiche e poi ho strutturato il codice dentro il while(1) per realizzare i vari patterns richiesti; sono presenti poi un 
+header e un codice per l'interrupt service routine in cui, respettivamente ho dichiarato la variabile globale necessaria per
+realizzare il passaggio tra i vari stati e ho realizza il semplice algoritmo per passare da uno stato all'altro. 
+Ho introdotto anche due file "MyFunction.h" e "MyFunction.c" in cui ho, rispettivamente, dichiarato e implementato le funzioni 
+che poi ho utilizzato nel main e nell'ISR. 
+Ho utilizzato l'Interrupt, triggerata dalla pressione del bottone on-board il cui segnale viene filtrato dal debouncer. 
+La più grossa difficoltà è stato la gestione dei LED: essendo il nostro LED RGB ad anodo comune, affinchè passi la corrente e si 
+accenda il LED è necessario che il pin sia basso; infatti, quando il pin è alto, il LED si comporta come un circuito aperto e non 
+non emette luce dato che non passa corrente. Perciò, ho dovuto ragionare al contrario e considerare acceso il led quando il pin è
+basso. 
 Su questo ragionamento si è basata la scelta della giusta forma dell'onda quadra: per ottenere,ad esempio, un'onda quadra prima 
 alta e poi bassa, è stato necessario ragionare al contrario e settare la compare mode come "Less" (la modalità "Less_Equal" 
 generava un piccolo blink quando appunto assumeva un valore uguale al compare) e settare il compare e il periodo in modo tale che 

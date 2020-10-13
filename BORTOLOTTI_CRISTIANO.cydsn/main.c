@@ -10,12 +10,11 @@
  * ========================================
 */
 
-//headers inclusion
 #include "project.h"
 #include "MyISR.h"
 #include "MyFunction.h"
 
-// definition of states
+// definition of all kinds od states
 #define step1 1
 #define step2 2
 #define step3 3
@@ -61,6 +60,13 @@ int main(void)
         }
     
         if(state==step2){
+            /* useless since they keep the same value, I insert it anyway in order to make easier further modfication of
+            patterns shapes
+            //set modality
+            Set_Compare_Mode(Less, Less); 
+            // set period
+            Set_Period(Full, Full); 
+            */
             //set compare
             Set_Compare(Always_On, Half);
             //reset counter
@@ -70,6 +76,11 @@ int main(void)
         if(state==step3){
             //set modality
             Set_Compare_Mode(Greater, Less);
+            /* useless since they keep the same value I insert it anyway in order to make easier further modfication of
+            patterns shapes
+            // set period
+            Set_Period(Full, Full); 
+            */
             //set compare
             Set_Compare(Half, Always_On);
             //reset counter
