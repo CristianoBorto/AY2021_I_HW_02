@@ -39,11 +39,13 @@
 
 int main(void)
 {
+    //initializarion phase
     CyGlobalIntEnable; /* Enable global interrupts. */
     ISR_Deb_StartEx(custom_ISR_Deb); //addressing the interrupt to my custom ISR and start
-    Start_Blinking(); //starting of all PWMs and Clocks
+    Start_Peripherals(); //starting of all PWMs and Clocks
     
-    state=0; //initialization of the flag
+    //initialization of the flag
+    state=0; 
     while(1)
     {
      if(state==step1){
