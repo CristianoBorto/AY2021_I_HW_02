@@ -10,11 +10,12 @@
  * ========================================
 */
 
+//headers inclusion
 #include "project.h"
 #include "MyISR.h"
 #include "MyFunction.h"
 
-// definition of all kinds od states
+// definition of states
 #define step1 1
 #define step2 2
 #define step3 3
@@ -38,12 +39,11 @@
 
 int main(void)
 {
-    CyDelay(500); //initial short period to allow the correct initialization of the system
     CyGlobalIntEnable; /* Enable global interrupts. */
     ISR_Deb_StartEx(custom_ISR_Deb); //addressing the interrupt to my custom ISR and start
-    Confirm_Blink(); //Confirm that the device is set, is on and the on-board LED is working
-    Start_Peripherals(); //starting of all PWMs and Clocks
-    state=step1; //initialization of the flag
+    Start_Blinking(); //starting of all PWMs and Clocks
+    
+    state=0; //initialization of the flag
     while(1)
     {
      if(state==step1){
