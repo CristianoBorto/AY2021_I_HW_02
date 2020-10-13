@@ -10,11 +10,12 @@
  * ========================================
 */
 
+//headers inclusion
 #include "project.h"
 #include "MyISR.h"
 #include "MyFunction.h"
 
-// definition of all kinds od states
+// definition of states
 #define step1 1
 #define step2 2
 #define step3 3
@@ -38,13 +39,11 @@
 
 int main(void)
 {
-    //initializarion phase
     CyGlobalIntEnable; /* Enable global interrupts. */
     ISR_Deb_StartEx(custom_ISR_Deb); //addressing the interrupt to my custom ISR and start
-    Start_Peripherals(); //starting of all PWMs and Clocks
+    Start_Blinking(); //starting of all PWMs and Clocks
     
-    //initialization of the flag
-    state=0; 
+    state=0; //initialization of the flag
     while(1)
     {
      if(state==step1){
@@ -60,13 +59,6 @@ int main(void)
         }
     
         if(state==step2){
-            /* useless since they keep the same value, I insert it anyway in order to make easier further modfication of
-            patterns shapes
-            //set modality
-            Set_Compare_Mode(Less, Less); 
-            // set period
-            Set_Period(Full, Full); 
-            */
             //set compare
             Set_Compare(Always_On, Half);
             //reset counter
@@ -76,11 +68,6 @@ int main(void)
         if(state==step3){
             //set modality
             Set_Compare_Mode(Greater, Less);
-            /* useless since they keep the same value I insert it anyway in order to make easier further modfication of
-            patterns shapes
-            // set period
-            Set_Period(Full, Full); 
-            */
             //set compare
             Set_Compare(Half, Always_On);
             //reset counter
